@@ -38,8 +38,9 @@
 			
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
-			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
-
+			var boardWidth = board.width(800);	// the maximum X-Coordinate of the screen
+			var boardHeight=jQuery(window).height();
+			
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
 			
@@ -49,6 +50,7 @@
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -61,15 +63,36 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
+			var positionX=0;
+			var positionY=0;
+			var points = 0;
+			var speed=10;
+			var speedY=10;
+			var randX=Math.random()*boardwidth;
+			var randY=Math.random()*boardHeight;
 
-			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
+			//positionX should increase by 10, or speed
+			positionX+=speed;
+			positionY+=speedY;
+			moveBoxTo(positionX,positionY);
+			if(positionX>boardWidth){
+				speed=-speed;
+			}
+			if(positionX<0){
+				speed*=-1;
+			}
+			if(positionY>boardHeight){
+				speedY=-speed;
+			}
+			if(positionY<0){
+				speedY*=-1;
+			}
 				
 
 			};
@@ -80,8 +103,36 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
-
+			positionX+=randX;
+			positionY+=randY;
+			points=points+1;
+			if(speed>0){
+				speed+=3;
+			}
+			if(speedY>0){
+				speed+=-3;
+			}
+			if(speedY>0){
+				speed+=3;
+			}
+			else if(speedY<0){
+				speed+=-3;
+			}
+			
+			changeBoxText(points);
+			moveBoxTo(positionX, positionY);
+			if(positionX>boardWidth){
+				speed=-speed;
+			}	
+			if(positionX<0){
+				speed*=-1
+			}
+			if(positionY>boardHeight){
+				speedY=-speedY;
+			}
+			if(positionY<0){
+				speedyY*=-1;
+			}
 
 			};
 		})();
