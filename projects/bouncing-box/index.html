@@ -48,11 +48,11 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
-				box.css("left", newPositionX);
-				
+			function moveBoxTo(newPositionX, newPositionY) {
+					box.css("left", newPositionX);
+					box.css("top", newPositionY);
 			}
-
+				
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
 				box.text(newText);
@@ -64,9 +64,12 @@
 			
 			// TODO 2 - Variable declarations 
 			var positionX = 0;
-			var points = 1
-			var speed = 10
-			
+			var points = 0;
+			var speed = 10;
+			var positionY = 0
+			var speedY = 10;
+			var boardHeight = jQuery(window).height();
+			var randNum = Math.random() * 100;			
 			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -74,18 +77,22 @@
 			turn it around! 
 			*/
 			function update() {
-			//positionX should increase by 10, or speed
+			/*Your Code to increase positionX by 10 HERE*/
 			positionX = positionX + speed;
 
-			moveBox(positionX);
-
-			if (positionX > boardWidth) {
-				speed = speed
+			if (positionX > boardWidth){
+				speed = -speed;
 			}
-			
-			
-			if (positionX < 0) {
-				speed = speed
+			else if (positionX < 0){
+				speed = -speed;
+			}
+			moveBoxTo(positionX, positionY);
+			positionY = positionY + speedY;
+			if (positionY > boardHeight){
+				speedY = -speedY;
+			}
+			else if (positionY < 0){
+				speedY = -speedY;
 			}
 			
 		};
@@ -96,22 +103,24 @@
 		the left side of the screen.
 		*/
 		function handleBoxClick() {
-			positionX = points + 1;
+				positionX = 0
+				points = points + 1
+				changeBoxText(points);
+				if (speed => 0){
+					speed = speed + 3;
+				}
+				if (speed <= 0){
+						speed = speed - 3;
+				}
+				var colorStr = "rgb(50,25,50";
+				box.css("background-color", colorStr);
+			   
 			
-			changeBoxText(points);
-			points = points + 1
-
-			if(speed > 0) {
-			   speed = speed + 3
-			}
-			 else if(speed < 0) {
-				speed = speed - 3
-			}
 			
 		};
 
 			
-		})();
+	})();
 	</script>
 </body>
 </html>
