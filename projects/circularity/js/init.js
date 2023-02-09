@@ -21,10 +21,15 @@ var init = function (window) {
         
         // TODO 1 : Declare and initialize our variables //
         var circle;			// variable to hold a single circle when creating circles / iterating
-        var circles = [];	// variable to store all circles in one Array
+        var circles=[];	// variable to store all circles in one Array
 
         // TODO 2 : Create a function that draws a circle 
-        var drawCircle = function () {
+        function drawCircle(){
+            circle=draw.randomCircleInArea(canvas,true,true,'#999' ,2);
+            physikz.addRandomVelocity(circle,canvas);
+            view.addChild(circle);
+            circles.push(circle);
+        }
             // createfunction
             circle = draw.randomCircleInArea(canvas, true, true, '#000', 1);
             
