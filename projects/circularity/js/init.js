@@ -69,9 +69,16 @@ var init = function (window) {
          
 
             // TODO 9 : Iterate over the array
+            for(var a=0;a<circles.length;a++){
+               var eachCircle=circles[a];
+               physikz.updatePosition(eachCircle);
+               game.checkCirclePosition(eachCircle);
+
+
+                }
     
             
-        }
+             }
     
         /* 
         This Function should check the position of a circle that is passed to the 
@@ -86,17 +93,15 @@ var init = function (window) {
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            if (circle.x > canvas.width){
-                circle.x = canvas.width;
-            }
-            if (circle.y > canvas.height){
+            if(circle.y>canvas.height){
                 circle.y=0;
             }
-            if (circle.y<0){
-                circle.y = canvas.height;
+            if(circle.x<0){
+                circle.x=canvas.width;
             }
-
-
+            if(circle.y<0){
+                circle.y=canvas.height;
+            }
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
         
