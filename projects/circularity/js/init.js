@@ -30,24 +30,10 @@ var init = function (window) {
             view.addChild(circle);
             circles.push(circle);
         }
-            // createfunction
-            circle = draw.randomCircleInArea(canvas, true, true, '#000', 1);
             
-            //set in motion
-            physikz.addRandomVelocity(circle, canvas, 10, 10);
-            
-            //add circles to array
-            view.addChild(circle);
-            circles.push(circle); 
-
-        }
-
         // TODO 3 / 7 : Call the drawCircle() function 
-       // drawCircles(5); 
-       var loopsDone = 0;
-       while ( loopsDone < 100) { 
-        drawCircle();
-        loopsDone++;
+       for(var x = 0; x<100;x++){
+            drawCircle();
        }
 
         ////////////////////////////////////////////////////////////
