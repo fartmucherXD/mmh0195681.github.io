@@ -90,6 +90,12 @@ function checkForNewDirection(event) {
 
   if (activeKey === KEY.LEFT) {
     snake.head.direction = "left";
+  }else if (activeKey === KEY.RIGHT){
+    snake.head.direction = "right";
+  }else if (activeKey === KEY.UP){
+    snake.head.direction = "up";
+  }else if (activeKey === KEY.DOWN){
+    snake.head.direction = "down";
   }
 
   // FILL IN THE REST
@@ -110,7 +116,16 @@ function moveSnake() {
 
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
-
+  if (snake.head.direction === "left") {
+    snake.head.column = snake.head.column - 1;
+  }else if (snake.head.direction === "right"){
+    snake.head.column = snake.head.column + 1;
+  }else if (snake.head.direction === "up"){
+    snake.head.row = snake.head.row - 1;
+  }else if (snake.head.direction === "down"){
+    snake.head.row = snake.head.row + 1;
+  }
+  repositionSquare(snake.head);
   /* 
   TODO 7: determine the next row and column for the snake's head
   
@@ -126,8 +141,10 @@ function hasHitWall() {
   
   HINT: What will the row and column of the snake's head be if this were the case?
   */
-
-  return false;
+  if (snake.head.row < 0 || snake.head.column < 0 || snake.head.column >= COLUMNS) {
+    return true;
+  } else
+    return false;
 }
 
 function hasCollidedWithApple() {
@@ -262,6 +279,8 @@ function makeSnakeSquare(row, column) {
 */
 function handleKeyDown(event) {
   // TODO 6a: make the handleKeyDown function register which key is pressed
+  activeKey = event.which;
+  console.log(activeKey);
   
 }
 
