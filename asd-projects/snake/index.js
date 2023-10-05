@@ -117,10 +117,10 @@ function moveSnake() {
   for (var i =1; i < snake.body.length; i++){
     var snakeSquare = snake.body[i];
 
-    var nextSnakeSquare = snake.body{i-1};
-    var nextRow = "???";
-    var nextColumn = "???";
-    var nextDirection = "???";
+    var nextSnakeSquare = snake.body[i-1];
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    var nextDirection = nextSnakeSquare.direction;
 
     snakeSquare.direction = nextDirection;
     snakeSquare.row = nextRow;
@@ -211,6 +211,7 @@ function handleAppleCollision() {
 }
 
 function hasCollidedWithSnake() {
+
   /* 
   TODO 12: Should return true if the snake's head has collided with any part of the
   snake's body.
@@ -219,7 +220,9 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-
+  if (snake.head.row === snake.body.row && snake.head.column === snake.body.colummn) {
+    return true;
+  }
   return false;
 }
 
